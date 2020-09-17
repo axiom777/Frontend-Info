@@ -250,7 +250,7 @@ _publicPath_ позволяет гвоздями вбить пути на кар
 Нужная и полезная штука [плагин](https://github.com/webpack/webpack-dev-server).
 [Документация на сайте webpack](https://webpack.js.org/configuration/dev-server/)
 
-Устанока:
+Установка:
 ```
 npm install webpack-dev-server --save-dev
 ```
