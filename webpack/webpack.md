@@ -5,7 +5,7 @@
 1. [Подключение SASS / SCSS в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-sass--scss-%D0%B2-webpack)
 1. [File-loader](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#file-loader)
 1. [webpack-dev-server](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#webpack-dev-server)
-
+1. [Просто полезные плагины]
 
 ## Подключение PUG в Webpack
 1. Загрузить pug и pug-loader
@@ -270,3 +270,7 @@ module.exports = {
 };
 ```
 Да тут в принципе нечего рассказывать.
+## Полезные плагины
+1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)
+1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin)
+1. [SCSS если не хочется везде импортировать файл с переменными](https://www.npmjs.com/package/sass-resources-loader) Народ пробовал работает. Найдено [тут](https://stackoverflow.com/questions/47491689/accessing-global-variables-in-sass-with-webpack-without-multiple-imports)
