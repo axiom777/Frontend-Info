@@ -43,7 +43,7 @@
    
 ### Дополнительные настройки pug-loader
 Все возможности данного лоадера описаны на его странице https://github.com/pugjs/pug-loader - разберем их:
-1. Для минификации используется свозйство _pretty_ по умолчанию оно находится в состоянии _false_ поэтому весь код не минифицирован
+1. Для минификации используется свойство _pretty_ по умолчанию оно находится в состоянии _false_ поэтому весь код не минифицирован
 1. Пути в проекте и __root__ - Как написано на [странице документации](https://github.com/pugjs/pug-loader), лоадер использует свои пути для нахождения других файлов, поэтому ,например _alias_, который используется в том же SCSS, здесь работать не будет. Для этого используется собственный механизм __root__, который позволяет указывать абсолютные пути в проекте, для подключения других блоков.
 1. Подключение вышеописанного:
    ```
@@ -135,5 +135,53 @@
      },
    };
    ```
-   
-   
+
+В принципе базовая настройка SCSS закончена.
+
+### SCSS - экспорт стилей в файл css
+В вышеописанной сборке стили будут подключаться в js, чтобы их вынести в отдельные файлы - воспользуемся [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin). Если вы ранее установили по урокам extract-text-webpack-plugin - заменяем, так как он плохо работает на последних версиях и официальная документация рекомендует использовать mini-css-extract-plugin - можете [проверить](https://www.npmjs.com/package/extract-text-webpack-plugin).
+
+Установка:
+```
+npm install --save-dev mini-css-extract-plugin
+```
+
+Настройка Webpack:
+```
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Импортируем!!!
+
+   module.exports = {
+     module: {
+       rules: [
+         {
+           test: /\.s[ac]ss$/i,
+          use: [
+            { // Добавляем еще 1 лоадер
+              loader: MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'resolve-url-loader',
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+         },
+       ],
+       plugins: [
+          new MiniCssExtractPlugin({
+           filename: '[name].css', // Тут также можно указать пути 'assets/css/[name].css'. 
+         }),                       // Такая конструкция положит css файл в корень dist
+       ],                          // name Берется из названии точки входа.
+     },                            // Если название не указано, по умолчанию она называется main
+   };
+
+```
+
+
