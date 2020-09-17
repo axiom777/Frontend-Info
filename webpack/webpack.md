@@ -98,7 +98,7 @@
 
 1. Проблемы с путями при имортах:
 
-   Если вы внимательно читали [документацию по sass-loader](https://webpack.js.org/loaders/sass-loader/), то там есть раздел [Problems with url(...)](https://webpack.js.org/loaders/sass-loader/#problems-with-url) - суть его в том, что при импортах в scss @import - пути относительно импортированных внутри scss файлов работать не будут и вы должны писать все пути относительно того файла который импортируете в точку входа. Если вас такой вариант не устраивает - используйте [resolve-url-loader](https://github.com/bholloway/resolve-url-loader).
+   Если вы внимательно читали [документацию по sass-loader](https://webpack.js.org/loaders/sass-loader/), то там есть раздел [Problems with url(...)](https://webpack.js.org/loaders/sass-loader/#problems-with-url) - суть его в том, что при импортах в scss @import - пути относительно импортированных внутри scss файлов работать будут не корректно и вы должны писать все пути относительно того файла который импортируете в точку входа (либо все scss импортировать в точку входа). Если вас такой вариант не устраивает - используйте [resolve-url-loader](https://github.com/bholloway/resolve-url-loader).
    
    Если не использовать resolve-url-loader - также возникает проблема при подключении различных сторонних библиотек, где используется scss, по вышеуказанной причине.
    
