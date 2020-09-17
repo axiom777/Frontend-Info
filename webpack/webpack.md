@@ -5,7 +5,7 @@
 1. [Подключение SASS / SCSS в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-sass--scss-%D0%B2-webpack)
 1. [File-loader](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#file-loader)
 1. [webpack-dev-server](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#webpack-dev-server)
-1. [Просто полезные плагины]
+1. [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
 
 ## Подключение PUG в Webpack
 1. Загрузить pug и pug-loader
