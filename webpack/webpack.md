@@ -1,5 +1,11 @@
 # Webpack
 Вы уже посмотрели [полезные видео](https://github.com/axiom777/Frontend-Info/blob/master/usefull.md#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B5%D0%B1%D0%BF%D0%B0%D0%BA) по настройке Webpack, но настал этап поключения различных препроцессоров.
+## Оглавление
+1. [Подключение PUG в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-pug-%D0%B2-webpack)
+1. [Подключение SASS / SCSS в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-sass--scss-%D0%B2-webpack)
+1. [File-loader](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#file-loader)
+1. [webpack-dev-server]()
+
 
 ## Подключение PUG в Webpack
 1. Загрузить pug и pug-loader
@@ -239,3 +245,26 @@ _Во первых относительно чего стоятся пути?_
 Если проект большой и файлы проекта разбросаны по различным каталогам, то бывают различные проблемы с путями. Во-первых они прописываются все как относительные и часто бывает проблема, что непонятно относительного чего они прописаны.
 
 _publicPath_ позволяет гвоздями вбить пути на картинки и шрифты. Все ссылки на изображения и шрифты будут иметь данный путь. Особенно удобно, если использовать абсолютные пути _publicPath_, да будут проблемы если вы будете открывать файлы html без dev сервера. Но вообще, работу тут надо проводить с dev-server.
+
+## webpack-dev-server
+Нужная и полезная штука [плагин](https://github.com/webpack/webpack-dev-server). [Документация на сайте webpack](https://webpack.js.org/configuration/dev-server/)
+Устанока:
+```
+npm install webpack-dev-server --save-dev
+```
+Конфигурация - моя:
+```
+module.exports = {
+  //...
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'), // Просто путь в каталог сборки
+    compress: true,
+    port: 9000 // Порт в браузёре
+    overlay: {
+      warnings: true, // Чтобы предупреждения выбешивали не только в консоле
+      errors: true,   // и ошибки пусть также красочно бесят на страницах))))
+    },
+  }
+};
+```
+Да тут в принципе нечего рассказывать.
