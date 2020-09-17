@@ -247,7 +247,9 @@ _Во первых относительно чего стоятся пути?_
 _publicPath_ позволяет гвоздями вбить пути на картинки и шрифты. Все ссылки на изображения и шрифты будут иметь данный путь. Особенно удобно, если использовать абсолютные пути _publicPath_, да будут проблемы если вы будете открывать файлы html без dev сервера. Но вообще, работу тут надо проводить с dev-server.
 
 ## webpack-dev-server
-Нужная и полезная штука [плагин](https://github.com/webpack/webpack-dev-server). [Документация на сайте webpack](https://webpack.js.org/configuration/dev-server/)
+Нужная и полезная штука [плагин](https://github.com/webpack/webpack-dev-server).
+[Документация на сайте webpack](https://webpack.js.org/configuration/dev-server/)
+
 Устанока:
 ```
 npm install webpack-dev-server --save-dev
