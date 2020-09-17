@@ -271,6 +271,9 @@ module.exports = {
 ```
 Да тут в принципе нечего рассказывать.
 ## Полезные плагины
-1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)
-1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin)
+### Плагины
+1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) Чистит dist автоматически
+1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin) Без комментариев
 1. [SCSS если не хочется везде импортировать файл с переменными](https://www.npmjs.com/package/sass-resources-loader) Народ пробовал работает. Найдено [тут](https://stackoverflow.com/questions/47491689/accessing-global-variables-in-sass-with-webpack-without-multiple-imports)
+### Ссылки м.б полезные
+
