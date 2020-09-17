@@ -6,6 +6,16 @@
 1. [File-loader](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#file-loader)
 1. [webpack-dev-server](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#webpack-dev-server)
 1. [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
+Планируется когда нибудь добавить:
+Структура каталогов проекта
+Как не добавлять каждый файл pug в проект, пусть они все сразу добавляются автоматом
+Разбиение на чанки [chunks]
+Настройка post-css и всяких, автопрефиксеров.
+Может быть про package.json и как работать с env + там всякие cross-env.
+Заливка проекта на github, настройка автоматического деплоя плагины gh-pages и что то там еще было
+Как поменять пути при деплое на нужные в publicPath
+
+
 
 ## Подключение PUG в Webpack
 1. Загрузить pug и pug-loader
