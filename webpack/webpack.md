@@ -354,9 +354,8 @@ Github позволяет публиковать свой проект - вет�
 Для этого я использую две утилиты gh-pages и push-dir брал из ответа [тут](https://stackoverflow.com/questions/42469817/host-github-pages-from-dist-folder-in-master-branch)
 Установка:
 ```
-npm install push-dir gh-pages --save-dev
+npm install gh-pages --save-dev
 ```
-
 В package.json добавляем скрипт
 ```
   "scripts": {
