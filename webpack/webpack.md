@@ -7,6 +7,7 @@
 1. [webpack-dev-server](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#webpack-dev-server)
 1. [Структура каталогов проекта](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
 1. [Как не добавлять каждый файл pug в проект, пусть они все сразу добавляются автоматом](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B-pug)
+1. [Деплой проекта на github](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9-%D0%BD%D0%B0-github-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
 1. [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
 
 Планируется когда нибудь добавить:
@@ -14,7 +15,6 @@
 1. Разбиение на чанки [chunks]
 1. Настройка post-css и всяких, автопрефиксеров.
 1. Может быть про package.json и как работать с env + там всякие cross-env.
-1. Заливка проекта на github, настройка автоматического деплоя плагины gh-pages и что то там еще было
 1. Как поменять пути при деплое на нужные в publicPath
 
 
@@ -363,7 +363,9 @@ npm install push-dir gh-pages --save-dev
   },
 ```
 Скрипт deploy запустит сборку проекта build и далее отправит содержимое каталога _dist_ на github. Если в сборке вы используете другой каталог, например у меня _build_ поменяйте _dist_ на _build_ Запускаем скрипт deploy вводим пароль от github - всё готово. Ваш проект на github https://имя_аканта.github.io/название_репозитория/
-Бывает, если произошла ошибка при добавлении ветки, gh-pages при новом деплое пишет _Ветка с именем «gh-pages» уже существует._ удаляем node_module и устанавливаем проект снова npm install
+Если вы не использовали publicPath в настройках вебпака, или настроили так, что все пути относительные - проект будет отображаться нормально сразу. Если использовали, то потребуется исправить пути... про это ниже
+
+Бывает, если произошла ошибка при добавлении ветки, gh-pages при новом деплое пишет _Ветка с именем «gh-pages» уже существует._ Решение - удаляем node_module и устанавливаем проект снова npm install
 
 ## Полезные плагины
 ### Плагины
