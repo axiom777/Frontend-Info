@@ -451,7 +451,8 @@ function importAll(resolve) {
   resolve.keys().forEach(resolve);
 }
 
-importAll(require.context('../src/', true, /\.js$|\.scss$/)); // там написано - (путь откуда, рекурсивно - т.е с вложенными каталогами, какие файлы)
+importAll(require.context('../src/', true, /\.js$|\.scss$/)); 
+// там написано - (путь откуда, рекурсивно - т.е с вложенными каталогами, какие файлы)
 ```
 Все файлы js и scss будут подключаться автоматически и нужно будет импортировать только внешние библиотеки и в scss файлы переменных - хотя это можно не делать, если использовать [sass-resources-loader](https://www.npmjs.com/package/sass-resources-loader).
 
