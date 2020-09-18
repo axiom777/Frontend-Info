@@ -348,6 +348,23 @@ plugins: [
 ```
 Таким образом можно забрать все страницы и не прописывать для каждой страницы _new HtmlWebpackPlugin({...._
 
+## Деплой на Github проекта
+Github позволяет публиковать свой проект - ветка по умолчанию gh-pages
+Для этого я использую две утилиты gh-pages и push-dir брал из ответа [тут](https://stackoverflow.com/questions/42469817/host-github-pages-from-dist-folder-in-master-branch)
+Установка:
+```
+npm install push-dir gh-pages --save-dev
+```
+В package.json добавляем скрипт
+```
+  "scripts": {
+    "build": "webpack --mode production",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+```
+Скрипт deploy запустит сборку проекта build и далее отправит содержимое каталога _dist_ на github. Если в сборке вы используете другой каталог, например у меня _build_ поменяйте _dist_ на _build_ Запускаем скрипт deploy вводим пароль от github - всё готово. Ваш проект на github https://имя_аканта.github.io/название_репозитория/
+Бывает, если произошла ошибка при добавлении ветки, gh-pages при новом деплое пишет _Ветка с именем «gh-pages» уже существует._ удаляем node_module и устанавливаем проект снова npm install
+
 ## Полезные плагины
 ### Плагины
 1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) Чистит dist автоматически
