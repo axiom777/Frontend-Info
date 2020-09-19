@@ -1,6 +1,7 @@
 # Webpack
 Вы уже посмотрели [полезные видео](https://github.com/axiom777/Frontend-Info/blob/master/usefull.md#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B5%D0%B1%D0%BF%D0%B0%D0%BA) по настройке Webpack, но настал этап поключения различных препроцессоров.
 ## Оглавление
+### Общее
 1. [Подключение PUG в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-pug-%D0%B2-webpack)
 1. [Подключение SASS / SCSS в Webpack](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-sass--scss-%D0%B2-webpack)
 1. [File-loader](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#file-loader)
@@ -10,7 +11,10 @@
 1. [Деплой проекта на github](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9-%D0%BD%D0%B0-github-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
 1. [Как собрать в для github mode Production](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-production)
 1. [Импорт всех js и scss в проект](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D0%B2%D1%81%D0%B5%D1%85-js-%D0%B8-scss-%D0%B2-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82)
-1. [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
+### Ближе к оптимизации
+1. [Разбиение проекта и добаление чанков]()
+### Разное
++ [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
 
 Планируется когда нибудь добавить:
 
@@ -55,7 +59,8 @@
         filename: `index.html`, // файл который вы получите на выходе
         template: `${path.resolve(__dirname, '.')}src/index.pug`, // шаблон откуда будет взять файл pug
       }),
-   };
+    ]
+   }
    ```
    Если проект подразумевает несколько страниц, то для каждой новой страницы добавляется новый блок __new HtmlWebpackPlugin__ где указываете свои пути.
    В принципе проект уже должен начать собираться, и на выходе должна получаться html страница из pug кода.
@@ -455,10 +460,92 @@ importAll(require.context('../src/', true, /\.js$|\.scss$/));
 ```
 Все файлы js и scss будут подключаться автоматически и нужно будет импортировать только внешние библиотеки и в scss файлы переменных - хотя это можно не делать, если использовать [sass-resources-loader](https://www.npmjs.com/package/sass-resources-loader).
 
+## Разбиение на чанки - chunks
+Вы хотите чтобы каждая страница html вашего проекта имела свой набор стилей и скриптов - которые на ней используются. Если вы только начинаете разарабатывать проект - на данный момент я бы рекомендовал не делать, а [импортировать всё в одну точку входа](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D0%B2%D1%81%D0%B5%D1%85-js-%D0%B8-scss-%D0%B2-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82), если это сделать необходимо, то делать это в последнюю очередь, так как помимо просто стилизации проекта, подключения, написания и исправления плагинов, придется отслеживать пути для подключеиния всех стилей и js файлов. В принципе есть идеи как делать импорт автоматически под каждую точку входа - опишу в конце, но реализацию пока не представляю как делать.
+
+Чтобы использовать чанки - нам понадобится сделать под каждую страницу отдельную точку входа. [Документация про entry point](https://webpack.js.org/concepts/entry-points/).
+Документация показывает, что в entry - можно передать строку, как и делали до этого:
+```
+entry: "index.js",
+```
+В этом случае будет создана одна точка входа и имя ей будет _main_.
+
+Второй способ - передача объекта, где __имя__ - это ключ, а __путь до файла__ - это значение.
+```
+module.exports = {
+  entry: {
+    main: './path/to/my/entry/file.js'
+  }
+};
+```
+### Простой способ
+Поэтому самый простой способ сделать запись:
+```
+module.exports = {
+  entry: {
+    colors-types: './pages/colors-types/colors-types.js',
+    form-elements: './pages/form-elements/form-elements.js',
+    cards: './pages/cards/cards.js', // и так далее
+  }
+};
+```
+В плагине html добавить chunks:
+```
+     plugins: [
+      new HtmlWebpackPlugin({
+        filename: `index.html`, 
+        template: `${path.resolve(__dirname, '.')}src/pages/colors-types/colors-types.pug`,
+        chunks:[colors-types], // Добавляем chunks
+      }),
+      new HtmlWebpackPlugin({
+        filename: `index.html`,
+        template: `${path.resolve(__dirname, '.')}src/form-elements/form-elements.pug`,
+        chunks:[form-elements],
+      }),
+    ]
+```
+После этого на выходе вы получите html, в котором будут стили и js, импортированные в точку входа(там их уже надо импортировать ручками, или как то ещё).
+
+### Более интересный способ
+Мы уже делали [автоматизированный импорт всех страниц pug](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B-pug), если нет то попробуйте, там мной предложена файловая структура, что все страницы лежат в каталоге pages, и каждая страница в своём каталоге... По итогу у нас есть переменная с массивом, где лежат названия всех страниц _const pages_.
+
+Подобный фокус я предлагаю провернуть для точек входа - мы в entry - передадим функцию, которая запишет туда объект где в качестве ключей будут названия страниц, а значением - путь к ним:
+```
+// Get Pages
+const pagesDir = path.resolve(__dirname, 'src/pages'); // Были ранее
+const pages = fs.readdirSync(pagesDir);
+
+function getEntryPoints() {
+  const result = {};
+  pages.forEach((page) => {
+    result[page] = `${pagesDir}/${page}/${page}.js`;
+  });
+  return result;
+}
+
+module.exports = (_, options) => {
+  entry: getEntryPoints() // Просто вызываем функцию
+};
+
+```
+Там где использовался HtmlWebpackPlugin 
+```
+    plugins: [
+      ...pages.map(
+        (page) =>
+          new HtmlWebpackPlugin({
+            filename: `${page}.html`,
+            template: `${pagesDir}/${page}/${page}.pug`,
+            chunks: [page],
+          }),
+      ),
+    ]
+```
+Теперь каждая страница имеет собственную точку входа и собираются они из pages и не надо городить новые конструкции при добавлении, новой страницы в проект. Просто перезапуск вебпака.
+
 ## Полезные плагины
 ### Плагины
 1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) Чистит dist автоматически
 1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin) Без комментариев
 1. [SCSS если не хочется везде импортировать файл с переменными](https://www.npmjs.com/package/sass-resources-loader) Народ пробовал работает. Найдено [тут](https://stackoverflow.com/questions/47491689/accessing-global-variables-in-sass-with-webpack-without-multiple-imports)
-### Ссылки м.б полезные
-
+### Ссылки м.б полезные (Тут может быть ваша реклама))))
