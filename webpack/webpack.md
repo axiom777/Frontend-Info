@@ -17,8 +17,6 @@
 + [Просто полезные плагины](https://github.com/axiom777/Frontend-Info/blob/master/webpack/webpack.md#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B)
 
 Планируется когда нибудь добавить:
-
-1. Разбиение на чанки [chunks]
 1. Настройка post-css и всяких, автопрефиксеров.
 1. ~~Может быть про package.json и как работать с env + там всякие cross-env.~~
 
