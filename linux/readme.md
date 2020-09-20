@@ -3,7 +3,8 @@ sudo apt update && apt upgrade && apt install xorg i3 thunar sacura
 startx
 
 [DMs](https://wiki.debian.org/DisplayManager)
-sudo apt install gdm3
+
+sudo apt install lightdm
 
 //VboxGuestAdditions
 sudo apt install linux-headers-$(uname -r)
