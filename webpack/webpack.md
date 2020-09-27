@@ -553,6 +553,6 @@ module.exports = (_, options) => {
 ## Полезные плагины
 ### Плагины
 1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) Чистит dist автоматически
-1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin) Без комментариев
+1. [Генератор фавиконок для вебпак](https://github.com/jantimon/favicons-webpack-plugin) Без комментариев. Лучше не использовать, так как, модуль sharp у меня заработал, только на версии node 12 вроде как. Хотя может быть у вас сработает.
 1. [SCSS если не хочется везде импортировать файл с переменными](https://www.npmjs.com/package/sass-resources-loader) Народ пробовал работает. Найдено [тут](https://stackoverflow.com/questions/47491689/accessing-global-variables-in-sass-with-webpack-without-multiple-imports)
 ### Ссылки м.б полезные (Тут может быть ваша реклама))))
