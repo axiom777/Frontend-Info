@@ -277,7 +277,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'), // Просто путь в каталог сборки
     compress: true,
-    port: 9000 // Порт в браузёре
+    port: 9000, // Порт в браузёре
     overlay: {
       warnings: true, // Чтобы предупреждения выбешивали не только в консоле
       errors: true,   // и ошибки пусть также красочно бесят на страницах))))
